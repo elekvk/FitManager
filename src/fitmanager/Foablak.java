@@ -27,21 +27,84 @@ public class Foablak extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        btnTagok = new javax.swing.JButton();
+        btnBerletek = new javax.swing.JButton();
+        btnBeleptetes = new javax.swing.JButton();
+        btnKimutatasok = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("FITMANAGER");
+
+        btnTagok.setText("Tagnyilvántartás");
+        btnTagok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTagokActionPerformed(evt);
+            }
+        });
+
+        btnBerletek.setText("Bérletkezelés");
+        btnBerletek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBerletekActionPerformed(evt);
+            }
+        });
+
+        btnBeleptetes.setText("Beléptetés");
+
+        btnKimutatasok.setText("Kimutatások");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(354, 354, 354)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnTagok, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBeleptetes, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(182, 182, 182)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnBerletek, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnKimutatasok, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(jLabel1)
+                .addGap(68, 68, 68)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTagok)
+                    .addComponent(btnBerletek))
+                .addGap(54, 54, 54)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBeleptetes)
+                    .addComponent(btnKimutatasok))
+                .addContainerGap(299, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBerletekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBerletekActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBerletekActionPerformed
+
+    private void btnTagokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTagokActionPerformed
+        // TODO add your handling code here:
+        TagokAblak ablak = new TagokAblak();
+            ablak.setLocationRelativeTo(this);
+            ablak.setVisible(true);
+    }//GEN-LAST:event_btnTagokActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +142,10 @@ public class Foablak extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBeleptetes;
+    private javax.swing.JButton btnBerletek;
+    private javax.swing.JButton btnKimutatasok;
+    private javax.swing.JButton btnTagok;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
