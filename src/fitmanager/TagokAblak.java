@@ -127,53 +127,71 @@ public class TagokAblak extends javax.swing.JFrame {
     private void btnTagMenteseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTagMenteseActionPerformed
         // TODO add your handling code here:
 
-    // A tag adatainak beolvasása
-    String nev = txtNev.getText().trim();
-    String telefon = txtTelefon.getText().trim();
-    String email = txtEmail.getText().trim();
-    String azonosito = txtTagAzonosito.getText().trim();
+        // A tag adatainak beolvasása
+        String nev = txtNev.getText().trim();
+        String telefon = txtTelefon.getText().trim();
+        String email = txtEmail.getText().trim();
+        String azonosito = txtTagAzonosito.getText().trim();
 
-    // Név ellenőrzése
-    if (nev.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(
-            this,
-            "Kérlek, add meg a tag nevét!"
-        );
-        return;
-    }
+        // Név ellenőrzése
+        if (nev.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Kérlek, add meg a tag nevét!"
+            );
+            return;
+        }
 
-    // Telefonszám ellenőrzése
-    if (telefon.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(
-            this,
-            "Kérlek, add meg a telefonszámot!"
-        );
-        return;
-    }
+        // Telefonszám ellenőrzése
+        if (telefon.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Kérlek, add meg a telefonszámot!"
+            );
+            return;
+        }
 
-    // E-mail-cím ellenőrzése
-    if (email.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(
-            this,
-            "Kérlek, add meg az e-mail-címet!"
-        );
-        return;
-    }
+        // E-mail-cím ellenőrzése
+        if (email.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Kérlek, add meg az e-mail-címet!"
+            );
+            return;
+        }
 
-    // Tagsági azonosító ellenőrzése
-    if (azonosito.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(
-            this,
-            "Kérlek, add meg a tagsági azonosítót!"
-        );
-        return;
-    }
+        // Tagsági azonosító ellenőrzése
+        if (azonosito.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Kérlek, add meg a tagsági azonosítót!"
+            );
+            return;
+        }
 
-    // Minden kötelező mező kitöltve
-    javax.swing.JOptionPane.showMessageDialog(
-        this,
-        "Minden kötelező mező ki van töltve!"
-    );
+        // Minden kötelező mező kitöltve
+        try {
+            AdatbazisKezelo.tagMentese(nev, telefon, email, azonosito);
+
+            javax.swing.JOptionPane.showMessageDialog(
+                    this, "A tag adatai sikeresen elmentve!"
+            );
+
+            txtNev.setText("");
+            txtTelefon.setText("");
+            txtEmail.setText("");
+            txtTagAzonosito.setText("");
+
+        } catch (java.sql.SQLException ex) {
+
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Nem sikerült elmenteni a tagot: " + ex.getMessage(),
+                    "Mentési hiba",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+        }
+
     }//GEN-LAST:event_btnTagMenteseActionPerformed
 
     /**
