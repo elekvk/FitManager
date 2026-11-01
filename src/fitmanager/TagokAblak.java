@@ -34,6 +34,9 @@ public class TagokAblak extends javax.swing.JFrame {
         txtTelefon = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtTagAzonosito = new javax.swing.JTextField();
+        btnTagMentese = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("FitManager - Tagnyilvántartás");
@@ -56,6 +59,15 @@ public class TagokAblak extends javax.swing.JFrame {
 
         txtEmail.setToolTipText("");
 
+        jLabel5.setText("Tagsági azonosító:");
+
+        btnTagMentese.setText("Tag mentése");
+        btnTagMentese.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTagMenteseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -66,21 +78,21 @@ public class TagokAblak extends javax.swing.JFrame {
                         .addGap(343, 343, 343)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(85, 85, 85)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnTagMentese)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(115, 115, 115)
-                                .addComponent(jLabel2)
-                                .addGap(64, 64, 64))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtTelefon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                            .addComponent(txtNev, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtEmail))))
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtTelefon, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNev, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtEmail)
+                                    .addComponent(txtTagAzonosito, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))))))
                 .addContainerGap(244, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -100,11 +112,69 @@ public class TagokAblak extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(255, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtTagAzonosito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(84, 84, 84)
+                .addComponent(btnTagMentese)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnTagMenteseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTagMenteseActionPerformed
+        // TODO add your handling code here:
+
+    // A tag adatainak beolvasása
+    String nev = txtNev.getText().trim();
+    String telefon = txtTelefon.getText().trim();
+    String email = txtEmail.getText().trim();
+    String azonosito = txtTagAzonosito.getText().trim();
+
+    // Név ellenőrzése
+    if (nev.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(
+            this,
+            "Kérlek, add meg a tag nevét!"
+        );
+        return;
+    }
+
+    // Telefonszám ellenőrzése
+    if (telefon.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(
+            this,
+            "Kérlek, add meg a telefonszámot!"
+        );
+        return;
+    }
+
+    // E-mail-cím ellenőrzése
+    if (email.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(
+            this,
+            "Kérlek, add meg az e-mail-címet!"
+        );
+        return;
+    }
+
+    // Tagsági azonosító ellenőrzése
+    if (azonosito.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(
+            this,
+            "Kérlek, add meg a tagsági azonosítót!"
+        );
+        return;
+    }
+
+    // Minden kötelező mező kitöltve
+    javax.swing.JOptionPane.showMessageDialog(
+        this,
+        "Minden kötelező mező ki van töltve!"
+    );
+    }//GEN-LAST:event_btnTagMenteseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,12 +212,15 @@ public class TagokAblak extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTagMentese;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNev;
+    private javax.swing.JTextField txtTagAzonosito;
     private javax.swing.JTextField txtTelefon;
     // End of variables declaration//GEN-END:variables
 }
