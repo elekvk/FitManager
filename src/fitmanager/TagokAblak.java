@@ -16,6 +16,20 @@ public class TagokAblak extends javax.swing.JFrame {
      */
     public TagokAblak() {
         initComponents();
+        tagokListaFrissitese();
+    }
+
+    private void tagokListaFrissitese() {
+        try {
+            tblTagok.setModel(AdatbazisKezelo.tagokLekerdezese());
+        } catch (java.sql.SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Nem sikerült betölteni a tagokat: " + ex.getMessage(),
+                    "Adatbázishiba",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+        }
     }
 
     /**
@@ -37,6 +51,8 @@ public class TagokAblak extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtTagAzonosito = new javax.swing.JTextField();
         btnTagMentese = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblTagok = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("FitManager - Tagnyilvántartás");
@@ -68,57 +84,85 @@ public class TagokAblak extends javax.swing.JFrame {
             }
         });
 
+        tblTagok.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Név", "Telefonszám", "E-mail cím", "Tagsági azonosító"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblTagok.setColumnSelectionAllowed(true);
+        jScrollPane1.setViewportView(tblTagok);
+        tblTagok.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(337, 337, 337))
             .addGroup(layout.createSequentialGroup()
+                .addGap(85, 85, 85)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(343, 343, 343)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnTagMentese)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel5)
                                     .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtTelefon, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNev, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtEmail)
-                                    .addComponent(txtTagAzonosito, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))))))
-                .addContainerGap(244, Short.MAX_VALUE))
+                                .addGap(42, 42, 42))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                            .addComponent(txtTagAzonosito, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNev)
+                            .addComponent(txtTelefon, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(223, 223, 223)
+                        .addComponent(btnTagMentese)))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
+                .addGap(44, 44, 44)
                 .addComponent(jLabel1)
-                .addGap(47, 47, 47)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtNev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                    .addComponent(txtNev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(42, 42, 42)
+                    .addComponent(jLabel3)
+                    .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtTagAzonosito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(84, 84, 84)
+                    .addComponent(txtTagAzonosito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
                 .addComponent(btnTagMentese)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 36, Short.MAX_VALUE))
         );
 
         pack();
@@ -133,49 +177,37 @@ public class TagokAblak extends javax.swing.JFrame {
         String email = txtEmail.getText().trim();
         String azonosito = txtTagAzonosito.getText().trim();
 
-        // Név ellenőrzése
         if (nev.isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(
-                    this,
-                    "Kérlek, add meg a tag nevét!"
-            );
+                    this, "Kérlek, add meg a tag nevét!");
             return;
         }
 
-        // Telefonszám ellenőrzése
         if (telefon.isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(
-                    this,
-                    "Kérlek, add meg a telefonszámot!"
-            );
+                    this, "Kérlek, add meg a telefonszámot!");
             return;
         }
 
-        // E-mail-cím ellenőrzése
         if (email.isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(
-                    this,
-                    "Kérlek, add meg az e-mail-címet!"
-            );
+                    this, "Kérlek, add meg az e-mail-címet!");
             return;
         }
 
-        // Tagsági azonosító ellenőrzése
         if (azonosito.isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(
-                    this,
-                    "Kérlek, add meg a tagsági azonosítót!"
-            );
+                    this, "Kérlek, add meg a tagsági azonosítót!");
             return;
         }
 
-        // Minden kötelező mező kitöltve
         try {
             AdatbazisKezelo.tagMentese(nev, telefon, email, azonosito);
 
+            tagokListaFrissitese();
+
             javax.swing.JOptionPane.showMessageDialog(
-                    this, "A tag adatai sikeresen elmentve!"
-            );
+                    this, "A tag adatai sikeresen elmentve!");
 
             txtNev.setText("");
             txtTelefon.setText("");
@@ -183,7 +215,6 @@ public class TagokAblak extends javax.swing.JFrame {
             txtTagAzonosito.setText("");
 
         } catch (java.sql.SQLException ex) {
-
             javax.swing.JOptionPane.showMessageDialog(
                     this,
                     "Nem sikerült elmenteni a tagot: " + ex.getMessage(),
@@ -191,6 +222,7 @@ public class TagokAblak extends javax.swing.JFrame {
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );
         }
+
 
     }//GEN-LAST:event_btnTagMenteseActionPerformed
 
@@ -236,6 +268,8 @@ public class TagokAblak extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblTagok;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNev;
     private javax.swing.JTextField txtTagAzonosito;
