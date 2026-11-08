@@ -53,6 +53,8 @@ public class TagokAblak extends javax.swing.JFrame {
         btnTagMentese = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTagok = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        txtKereses = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("FitManager - Tagnyilvántartás");
@@ -104,6 +106,14 @@ public class TagokAblak extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblTagok);
         tblTagok.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
+        jLabel6.setText("Keresés:");
+
+        txtKereses.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtKeresesKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,6 +125,10 @@ public class TagokAblak extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(223, 223, 223)
+                        .addComponent(btnTagMentese))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -125,16 +139,17 @@ public class TagokAblak extends javax.swing.JFrame {
                                 .addGap(42, 42, 42))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
-                            .addComponent(txtTagAzonosito, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNev)
-                            .addComponent(txtTelefon, javax.swing.GroupLayout.Alignment.LEADING)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(223, 223, 223)
-                        .addComponent(btnTagMentese)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtKereses, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                                .addComponent(txtTagAzonosito, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtNev)
+                                .addComponent(txtTelefon, javax.swing.GroupLayout.Alignment.LEADING)))))
                 .addContainerGap(119, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -158,11 +173,18 @@ public class TagokAblak extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTagAzonosito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(18, 18, 18)
+                .addGap(35, 35, 35)
                 .addComponent(btnTagMentese)
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 36, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtKereses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -226,6 +248,25 @@ public class TagokAblak extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnTagMenteseActionPerformed
 
+    private void txtKeresesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKeresesKeyReleased
+        // TODO add your handling code here:
+        String keresettSzoveg = txtKereses.getText().trim();
+
+        javax.swing.table.TableRowSorter<javax.swing.table.TableModel> rendezo
+                = new javax.swing.table.TableRowSorter<>(tblTagok.getModel());
+
+        tblTagok.setRowSorter(rendezo);
+
+        if (!keresettSzoveg.isEmpty()) {
+            rendezo.setRowFilter(
+                    javax.swing.RowFilter.regexFilter(
+                            "(?iu)" + java.util.regex.Pattern.quote(keresettSzoveg),
+                            1, 4
+                    )
+            );
+    }//GEN-LAST:event_txtKeresesKeyReleased
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -268,9 +309,11 @@ public class TagokAblak extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblTagok;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtKereses;
     private javax.swing.JTextField txtNev;
     private javax.swing.JTextField txtTagAzonosito;
     private javax.swing.JTextField txtTelefon;
