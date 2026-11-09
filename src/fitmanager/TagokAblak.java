@@ -283,6 +283,53 @@ public class TagokAblak extends javax.swing.JFrame {
 
     private void btnTagModositasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTagModositasaActionPerformed
         // TODO add your handling code here:
+        int kijeloltSor = tblTagok.getSelectedRow();
+
+        if (kijeloltSor == -1) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this, "Először válassz ki egy tagot a táblázatból!");
+            return;
+        }
+
+        int modellSor = tblTagok.convertRowIndexToModel(kijeloltSor);
+
+        int id = ((Number) tblTagok.getModel()
+                .getValueAt(modellSor, 0)).intValue();
+
+        String nev = txtNev.getText().trim();
+        String telefon = txtTelefon.getText().trim();
+        String email = txtEmail.getText().trim();
+        String azonosito = txtTagAzonosito.getText().trim();
+
+        if (nev.isEmpty() || telefon.isEmpty()
+                || email.isEmpty() || azonosito.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this, "Minden mező kitöltése kötelező!");
+            return;
+        }
+
+        try {
+            AdatbazisKezelo.tagModositasa(
+                    id, nev, telefon, email, azonosito);
+
+            tagokListaFrissitese();
+
+            javax.swing.JOptionPane.showMessageDialog(
+                    this, "A tag adatai sikeresen módosítva!");
+
+            txtNev.setText("");
+            txtTelefon.setText("");
+            txtEmail.setText("");
+            txtTagAzonosito.setText("");
+
+        } catch (java.sql.SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Nem sikerült módosítani a tagot: " + ex.getMessage(),
+                    "Módosítási hiba",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+        }
     }//GEN-LAST:event_btnTagModositasaActionPerformed
 
     private void tblTagokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTagokMouseClicked

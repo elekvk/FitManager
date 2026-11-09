@@ -1,4 +1,3 @@
-
 package fitmanager;
 
 import java.sql.Connection;
@@ -10,15 +9,15 @@ import javax.swing.table.DefaultTableModel;
 
 public class AdatbazisKezelo {
 
-    private static final String URL =
-            "jdbc:derby:C:/Users/User/AppData/Roaming/NetBeans/8.2/derby/FitManagerDB";
+    private static final String URL
+            = "jdbc:derby:C:/Users/User/AppData/Roaming/NetBeans/8.2/derby/FitManagerDB";
 
     public static Connection kapcsolodas() throws SQLException {
         return DriverManager.getConnection(URL);
     }
 
     public static void tagMentese(String nev, String telefon,
-                                  String email, String azonosito)
+            String email, String azonosito)
             throws SQLException {
 
         String sql = "INSERT INTO APP.TAGOK "
@@ -26,8 +25,8 @@ public class AdatbazisKezelo {
                 + "VALUES (?, ?, ?, ?)";
 
         try (Connection kapcsolat = kapcsolodas();
-             PreparedStatement utasitas =
-                     kapcsolat.prepareStatement(sql)) {
+                PreparedStatement utasitas
+                = kapcsolat.prepareStatement(sql)) {
 
             utasitas.setString(1, nev);
             utasitas.setString(2, telefon);
@@ -35,6 +34,32 @@ public class AdatbazisKezelo {
             utasitas.setString(4, azonosito);
 
             utasitas.executeUpdate();
+        }
+    }
+
+    public static void tagModositasa(int id, String nev, String telefon,
+            String email, String azonosito)
+            throws SQLException {
+
+        String sql = "UPDATE APP.TAGOK "
+                + "SET NEV = ?, TELEFON = ?, EMAIL = ?, TAG_AZONOSITO = ? "
+                + "WHERE ID = ?";
+
+        try (Connection kapcsolat = kapcsolodas();
+                PreparedStatement utasitas
+                = kapcsolat.prepareStatement(sql)) {
+
+            utasitas.setString(1, nev);
+            utasitas.setString(2, telefon);
+            utasitas.setString(3, email);
+            utasitas.setString(4, azonosito);
+            utasitas.setInt(5, id);
+
+            int modositottSorok = utasitas.executeUpdate();
+
+            if (modositottSorok != 1) {
+                throw new SQLException("A kiválasztott tag nem található.");
+            }
         }
     }
 
@@ -46,21 +71,21 @@ public class AdatbazisKezelo {
             "E-mail-cím", "Tagsági azonosító"
         };
 
-        DefaultTableModel modell =
-                new DefaultTableModel(oszlopok, 0) {
-                    @Override
-                    public boolean isCellEditable(int sor, int oszlop) {
-                        return false;
-                    }
-                };
+        DefaultTableModel modell
+                = new DefaultTableModel(oszlopok, 0) {
+            @Override
+            public boolean isCellEditable(int sor, int oszlop) {
+                return false;
+            }
+        };
 
         String sql = "SELECT ID, NEV, TELEFON, EMAIL, "
                 + "TAG_AZONOSITO FROM APP.TAGOK ORDER BY ID";
 
         try (Connection kapcsolat = kapcsolodas();
-             PreparedStatement utasitas =
-                     kapcsolat.prepareStatement(sql);
-             ResultSet eredmeny = utasitas.executeQuery()) {
+                PreparedStatement utasitas
+                = kapcsolat.prepareStatement(sql);
+                ResultSet eredmeny = utasitas.executeQuery()) {
 
             while (eredmeny.next()) {
                 Object[] sor = {
