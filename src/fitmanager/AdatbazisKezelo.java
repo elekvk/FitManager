@@ -63,6 +63,22 @@ public class AdatbazisKezelo {
         }
     }
 
+    public static void tagTorlese(int id) throws SQLException {
+        String sql = "DELETE FROM APP.TAGOK WHERE ID = ?";
+
+        try (Connection kapcsolat = kapcsolodas();
+                PreparedStatement utasitas = kapcsolat.prepareStatement(sql)) {
+
+            utasitas.setInt(1, id);
+
+            int toroltSorok = utasitas.executeUpdate();
+
+            if (toroltSorok != 1) {
+                throw new SQLException("A kiválasztott tag nem található.");
+            }
+        }
+    }
+
     public static DefaultTableModel tagokLekerdezese()
             throws SQLException {
 
