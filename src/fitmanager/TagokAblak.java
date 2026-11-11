@@ -56,6 +56,7 @@ public class TagokAblak extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtKereses = new javax.swing.JTextField();
         btnTagModositasa = new javax.swing.JButton();
+        btnTagTorlese = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("FitManager - Tagnyilvántartás");
@@ -127,6 +128,13 @@ public class TagokAblak extends javax.swing.JFrame {
             }
         });
 
+        btnTagTorlese.setText("Tag törlése");
+        btnTagTorlese.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTagTorleseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,32 +147,35 @@ public class TagokAblak extends javax.swing.JFrame {
                 .addGap(85, 85, 85)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel2))
-                                    .addGap(42, 42, 42))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtEmail)
-                                .addComponent(txtTagAzonosito, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtNev)
-                                .addComponent(txtTelefon, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtKereses, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(137, 137, 137)
-                            .addComponent(btnTagMentese, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnTagModositasa))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel2))
+                                        .addGap(42, 42, 42))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtEmail)
+                                    .addComponent(txtTagAzonosito, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNev)
+                                    .addComponent(txtTelefon, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtKereses, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(137, 137, 137)
+                                .addComponent(btnTagMentese, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnTagModositasa)))
+                        .addGap(67, 67, 67)
+                        .addComponent(btnTagTorlese)))
                 .addContainerGap(119, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -191,7 +202,8 @@ public class TagokAblak extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTagMentese)
-                    .addComponent(btnTagModositasa))
+                    .addComponent(btnTagModositasa)
+                    .addComponent(btnTagTorlese))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -351,10 +363,63 @@ public class TagokAblak extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tblTagokMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    private void btnTagTorleseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTagTorleseActionPerformed
+        // TODO add your handling code here
+        int kijeloltSor = tblTagok.getSelectedRow();
+
+        if (kijeloltSor == -1) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this, "Először válassz ki egy tagot a táblázatból!");
+            return;
+        }
+
+        int modellSor = tblTagok.convertRowIndexToModel(kijeloltSor);
+
+        int id = ((Number) tblTagok.getModel()
+                .getValueAt(modellSor, 0)).intValue();
+
+        String nev = tblTagok.getModel()
+                .getValueAt(modellSor, 1).toString();
+
+        int valasz = javax.swing.JOptionPane.showConfirmDialog(
+                this,
+                "Biztosan törölni szeretnéd a következő tagot?\n\n" + nev,
+                "Tag törlésének megerősítése",
+                javax.swing.JOptionPane.YES_NO_OPTION,
+                javax.swing.JOptionPane.WARNING_MESSAGE
+        );
+
+        if (valasz != javax.swing.JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        try {
+            AdatbazisKezelo.tagTorlese(id);
+
+            tagokListaFrissitese();
+
+            txtNev.setText("");
+            txtTelefon.setText("");
+            txtEmail.setText("");
+            txtTagAzonosito.setText("");
+
+            javax.swing.JOptionPane.showMessageDialog(
+                    this, "A tag sikeresen törölve lett!");
+
+        } catch (java.sql.SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Nem sikerült törölni a tagot: " + ex.getMessage(),
+                    "Törlési hiba",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }//GEN-LAST:event_btnTagTorleseActionPerformed
+
+/**
+ * @param args the command line arguments
+ */
+public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -366,23 +431,47 @@ public class TagokAblak extends javax.swing.JFrame {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-                }
+                
+
+
+
+}
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(TagokAblak.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TagokAblak.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TagokAblak.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        
+
+
+
+} catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(TagokAblak.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+        
+
+
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TagokAblak.class
+
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+        
+
+
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TagokAblak.class
+
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -397,6 +486,7 @@ public class TagokAblak extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnTagMentese;
     private javax.swing.JButton btnTagModositasa;
+    private javax.swing.JButton btnTagTorlese;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
