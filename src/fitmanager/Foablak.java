@@ -97,6 +97,9 @@ public class Foablak extends javax.swing.JFrame {
 
     private void btnBerletekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBerletekActionPerformed
         // TODO add your handling code here:
+        BerletekAblak ablak = new BerletekAblak();
+        ablak.setLocationRelativeTo(this);
+        ablak.setVisible(true);
     }//GEN-LAST:event_btnBerletekActionPerformed
 
     private void btnTagokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTagokActionPerformed
