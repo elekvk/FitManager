@@ -102,6 +102,30 @@ public class AdatbazisKezelo {
         }
     }
 
+    
+    public static java.util.List<String> tagokNeveiLekerdezese()
+            throws SQLException {
+
+        java.util.List<String> tagok = new java.util.ArrayList<>();
+
+        String sql = "SELECT ID, NEV FROM APP.TAGOK ORDER BY NEV";
+
+        try (Connection kapcsolat = kapcsolodas();
+                PreparedStatement utasitas = kapcsolat.prepareStatement(sql);
+                ResultSet eredmeny = utasitas.executeQuery()) {
+
+            while (eredmeny.next()) {
+                int id = eredmeny.getInt("ID");
+                String nev = eredmeny.getString("NEV");
+
+                tagok.add(id + " - " + nev);
+            }
+        }
+
+        return tagok;
+    }
+
+    
     public static DefaultTableModel tagokLekerdezese()
             throws SQLException {
 

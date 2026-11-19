@@ -196,6 +196,103 @@ public class BerletekAblak extends javax.swing.JFrame {
 
     private void btnBerletMenteseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBerletMenteseActionPerformed
         // TODO add your handling code here:
+        try {
+            if (cmbTagok.getSelectedItem() == null
+                    || cmbBerletTipus.getSelectedItem() == null) {
+
+                javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        "Válassz tagot és bérlettípust!"
+                );
+                return;
+            }
+
+            String tag = cmbTagok.getSelectedItem().toString();
+            String tipus = cmbBerletTipus.getSelectedItem().toString();
+
+            int elvalaszto = tag.indexOf(" - ");
+
+            if (elvalaszto == -1) {
+                javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        "Hibás tagazonosító!"
+                );
+                return;
+            }
+
+            int tagId = Integer.parseInt(
+                    tag.substring(0, elvalaszto)
+            );
+
+            String kezdo = txtKezdoDatum.getText().trim();
+            String lejarati = txtLejaratiDatum.getText().trim();
+
+            java.time.format.DateTimeFormatter datumFormatum
+                    = java.time.format.DateTimeFormatter
+                            .ofPattern("uuuu.MM.dd")
+                            .withResolverStyle(
+                                    java.time.format.ResolverStyle.STRICT);
+
+            String kezdoSzoveg = kezdo.endsWith(".")
+                    ? kezdo.substring(0, kezdo.length() - 1)
+                    : kezdo;
+
+            String lejaratiSzoveg = lejarati.endsWith(".")
+                    ? lejarati.substring(0, lejarati.length() - 1)
+                    : lejarati;
+
+            java.time.LocalDate kezdoHelyiDatum
+                    = java.time.LocalDate.parse(
+                            kezdoSzoveg, datumFormatum);
+
+            java.time.LocalDate lejaratiHelyiDatum
+                    = java.time.LocalDate.parse(
+                            lejaratiSzoveg, datumFormatum);
+
+            java.sql.Date kezdoDatum
+                    = java.sql.Date.valueOf(kezdoHelyiDatum);
+
+            java.sql.Date lejaratiDatum
+                    = java.sql.Date.valueOf(lejaratiHelyiDatum);
+
+            if (lejaratiDatum.before(kezdoDatum)) {
+                javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        "A lejárati dátum nem lehet korábbi a kezdő dátumnál!"
+                );
+                return;
+            }
+
+            AdatbazisKezelo.berletMentese(
+                    tagId,
+                    tipus,
+                    kezdoDatum,
+                    lejaratiDatum
+            );
+
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "A bérlet sikeresen elmentve!"
+            );
+
+            txtKezdoDatum.setText("");
+            txtLejaratiDatum.setText("");
+
+        } catch (java.time.format.DateTimeParseException ex) {
+
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Hibás adat vagy dátum! A helyes formátum: ÉÉÉÉ.HH.NN."
+            );
+
+        } catch (java.sql.SQLException ex) {
+
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Adatbázishiba: " + ex.getMessage()
+            );
+        }
+
     }//GEN-LAST:event_btnBerletMenteseActionPerformed
 
     /**
