@@ -79,6 +79,29 @@ public class AdatbazisKezelo {
         }
     }
 
+    public static void berletMentese(
+            int tagId,
+            String tipus,
+            java.sql.Date kezdoDatum,
+            java.sql.Date lejaratiDatum) throws SQLException {
+
+        String sql = "INSERT INTO APP.BERLETEK "
+                + "(TAG_ID, TIPUS, KEZDO_DATUM, LEJARATI_DATUM) "
+                + "VALUES (?, ?, ?, ?)";
+
+        try (Connection kapcsolat = kapcsolodas();
+                PreparedStatement utasitas
+                = kapcsolat.prepareStatement(sql)) {
+
+            utasitas.setInt(1, tagId);
+            utasitas.setString(2, tipus);
+            utasitas.setDate(3, kezdoDatum);
+            utasitas.setDate(4, lejaratiDatum);
+
+            utasitas.executeUpdate();
+        }
+    }
+
     public static DefaultTableModel tagokLekerdezese()
             throws SQLException {
 
