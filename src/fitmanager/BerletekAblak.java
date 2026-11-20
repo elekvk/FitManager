@@ -15,6 +15,7 @@ public class BerletekAblak extends javax.swing.JFrame {
         initComponents();
         tagokBetoltese();
         berletTipusokBetoltese();
+        berletekListaFrissitese();
     }
 
     private void berletTipusokBetoltese() {
@@ -46,6 +47,22 @@ public class BerletekAblak extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(
                     this,
                     "Nem sikerült betölteni a tagokat: "
+                    + ex.getMessage(),
+                    "Adatbázishiba",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
+
+    private void berletekListaFrissitese() {
+        try {
+            tblBerletek.setModel(
+                    AdatbazisKezelo.berletekLekerdezese()
+            );
+        } catch (java.sql.SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Nem sikerült betölteni a bérleteket: "
                     + ex.getMessage(),
                     "Adatbázishiba",
                     javax.swing.JOptionPane.ERROR_MESSAGE
@@ -277,6 +294,7 @@ public class BerletekAblak extends javax.swing.JFrame {
 
             txtKezdoDatum.setText("");
             txtLejaratiDatum.setText("");
+            berletekListaFrissitese();
 
         } catch (java.time.format.DateTimeParseException ex) {
 

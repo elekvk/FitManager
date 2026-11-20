@@ -102,7 +102,6 @@ public class AdatbazisKezelo {
         }
     }
 
-    
     public static java.util.List<String> tagokNeveiLekerdezese()
             throws SQLException {
 
@@ -125,7 +124,6 @@ public class AdatbazisKezelo {
         return tagok;
     }
 
-    
     public static DefaultTableModel tagokLekerdezese()
             throws SQLException {
 
@@ -172,5 +170,47 @@ public class AdatbazisKezelo {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public static DefaultTableModel berletekLekerdezese()
+            throws SQLException {
+
+        DefaultTableModel modell = new DefaultTableModel(
+                new String[]{
+                    "ID", "Tag neve", "Bérlet típusa",
+                    "Kezdő dátum", "Lejárati dátum"
+                }, 0
+        ) {
+            @Override
+            public boolean isCellEditable(int sor, int oszlop) {
+                return false;
+            }
+        };
+
+        String sql = "SELECT B.ID, T.NEV, B.TIPUS, "
+                + "B.KEZDO_DATUM, B.LEJARATI_DATUM "
+                + "FROM APP.BERLETEK B "
+                + "INNER JOIN APP.TAGOK T ON B.TAG_ID = T.ID "
+                + "ORDER BY B.ID DESC";
+
+        try (Connection kapcsolat = kapcsolodas();
+                PreparedStatement utasitas
+                = kapcsolat.prepareStatement(sql);
+                ResultSet eredmeny = utasitas.executeQuery()) {
+
+            while (eredmeny.next()) {
+                modell.addRow(new Object[]{
+                    eredmeny.getInt("ID"),
+                    eredmeny.getString("NEV"),
+                    eredmeny.getString("TIPUS"),
+                    eredmeny.getDate("KEZDO_DATUM").toLocalDate()
+                        .format(java.time.format.DateTimeFormatter.ofPattern("yyyy.MM.dd.")),
+                    eredmeny.getDate("LEJARATI_DATUM").toLocalDate()
+                        .format(java.time.format.DateTimeFormatter.ofPattern("yyyy.MM.dd."))
+                });
+            }
+        }
+
+        return modell;
     }
 }
