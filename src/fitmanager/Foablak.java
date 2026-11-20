@@ -60,6 +60,11 @@ public class Foablak extends javax.swing.JFrame {
         });
 
         btnKimutatasok.setText("Kimutatások");
+        btnKimutatasok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKimutatasokActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,6 +125,13 @@ public class Foablak extends javax.swing.JFrame {
         ablak.setLocationRelativeTo(this);
         ablak.setVisible(true);
     }//GEN-LAST:event_btnBeleptetesActionPerformed
+
+    private void btnKimutatasokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKimutatasokActionPerformed
+        // TODO add your handling code here:
+        KimutatasokAblak ablak = new KimutatasokAblak();
+        ablak.setLocationRelativeTo(this);
+        ablak.setVisible(true);
+    }//GEN-LAST:event_btnKimutatasokActionPerformed
 
     /**
      * @param args the command line arguments

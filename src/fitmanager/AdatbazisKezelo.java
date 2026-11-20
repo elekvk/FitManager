@@ -252,4 +252,39 @@ public class AdatbazisKezelo {
             utasitas.executeUpdate();
         }
     }
+
+    public static int osszesDarab(String tablaNev)
+            throws SQLException {
+
+        String sql;
+
+        switch (tablaNev) {
+            case "TAGOK":
+                sql = "SELECT COUNT(*) FROM APP.TAGOK";
+                break;
+            case "BERLETEK":
+                sql = "SELECT COUNT(*) FROM APP.BERLETEK";
+                break;
+            case "BELEPESEK":
+                sql = "SELECT COUNT(*) FROM APP.BELEPESEK";
+                break;
+            default:
+                throw new IllegalArgumentException(
+                        "Ismeretlen kimutatási kategória!"
+                );
+        }
+
+        try (Connection kapcsolat = kapcsolodas();
+                PreparedStatement utasitas
+                = kapcsolat.prepareStatement(sql);
+                ResultSet eredmeny = utasitas.executeQuery()) {
+
+            if (eredmeny.next()) {
+                return eredmeny.getInt(1);
+            }
+        }
+
+        return 0;
+    }
+
 }
