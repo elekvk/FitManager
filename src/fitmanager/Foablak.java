@@ -53,6 +53,11 @@ public class Foablak extends javax.swing.JFrame {
         });
 
         btnBeleptetes.setText("Beléptetés");
+        btnBeleptetes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBeleptetesActionPerformed(evt);
+            }
+        });
 
         btnKimutatasok.setText("Kimutatások");
 
@@ -105,9 +110,16 @@ public class Foablak extends javax.swing.JFrame {
     private void btnTagokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTagokActionPerformed
         // TODO add your handling code here:
         TagokAblak ablak = new TagokAblak();
-            ablak.setLocationRelativeTo(this);
-            ablak.setVisible(true);
+        ablak.setLocationRelativeTo(this);
+        ablak.setVisible(true);
     }//GEN-LAST:event_btnTagokActionPerformed
+
+    private void btnBeleptetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBeleptetesActionPerformed
+        // TODO add your handling code here:
+        BeleptetesAblak ablak = new BeleptetesAblak();
+        ablak.setLocationRelativeTo(this);
+        ablak.setVisible(true);
+    }//GEN-LAST:event_btnBeleptetesActionPerformed
 
     /**
      * @param args the command line arguments

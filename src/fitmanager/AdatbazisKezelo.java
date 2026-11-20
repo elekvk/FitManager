@@ -204,13 +204,52 @@ public class AdatbazisKezelo {
                     eredmeny.getString("NEV"),
                     eredmeny.getString("TIPUS"),
                     eredmeny.getDate("KEZDO_DATUM").toLocalDate()
-                        .format(java.time.format.DateTimeFormatter.ofPattern("yyyy.MM.dd.")),
+                    .format(java.time.format.DateTimeFormatter.ofPattern("yyyy.MM.dd.")),
                     eredmeny.getDate("LEJARATI_DATUM").toLocalDate()
-                        .format(java.time.format.DateTimeFormatter.ofPattern("yyyy.MM.dd."))
+                    .format(java.time.format.DateTimeFormatter.ofPattern("yyyy.MM.dd."))
                 });
             }
         }
 
         return modell;
+    }
+
+    public static boolean vanErvenyesBerlet(int tagId)
+            throws SQLException {
+
+        String sql = "SELECT COUNT(*) FROM APP.BERLETEK "
+                + "WHERE TAG_ID = ? "
+                + "AND KEZDO_DATUM <= CURRENT_DATE "
+                + "AND LEJARATI_DATUM >= CURRENT_DATE";
+
+        try (Connection kapcsolat = kapcsolodas();
+                PreparedStatement utasitas
+                = kapcsolat.prepareStatement(sql)) {
+
+            utasitas.setInt(1, tagId);
+
+            try (ResultSet eredmeny = utasitas.executeQuery()) {
+                if (eredmeny.next()) {
+                    return eredmeny.getInt(1) > 0;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public static void belepesMentese(int tagId)
+            throws SQLException {
+
+        String sql = "INSERT INTO APP.BELEPESEK (TAG_ID) "
+                + "VALUES (?)";
+
+        try (Connection kapcsolat = kapcsolodas();
+                PreparedStatement utasitas
+                = kapcsolat.prepareStatement(sql)) {
+
+            utasitas.setInt(1, tagId);
+            utasitas.executeUpdate();
+        }
     }
 }

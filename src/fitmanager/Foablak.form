@@ -95,6 +95,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Bel&#xe9;ptet&#xe9;s"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBeleptetesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnKimutatasok">
       <Properties>
