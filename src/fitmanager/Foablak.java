@@ -16,6 +16,7 @@ public class Foablak extends javax.swing.JFrame {
      */
     public Foablak() {
         initComponents();
+        Megjelenes.beallit(this);
     }
 
     /**
@@ -34,10 +35,14 @@ public class Foablak extends javax.swing.JFrame {
         btnKimutatasok = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("FitManager - Főmenü");
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("FITMANAGER");
 
+        btnTagok.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnTagok.setText("Tagnyilvántartás");
         btnTagok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -45,6 +50,7 @@ public class Foablak extends javax.swing.JFrame {
             }
         });
 
+        btnBerletek.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnBerletek.setText("Bérletkezelés");
         btnBerletek.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,6 +58,7 @@ public class Foablak extends javax.swing.JFrame {
             }
         });
 
+        btnBeleptetes.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnBeleptetes.setText("Beléptetés");
         btnBeleptetes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,6 +66,7 @@ public class Foablak extends javax.swing.JFrame {
             }
         });
 
+        btnKimutatasok.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnKimutatasok.setText("Kimutatások");
         btnKimutatasok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,36 +78,32 @@ public class Foablak extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(148, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnTagok, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBeleptetes, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(188, 188, 188)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(354, 354, 354)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnTagok, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBeleptetes, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(182, 182, 182)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnBerletek, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnKimutatasok, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(196, Short.MAX_VALUE))
+                    .addComponent(btnKimutatasok, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBerletek, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(163, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(100, 100, 100)
+                .addGap(95, 95, 95)
                 .addComponent(jLabel1)
-                .addGap(68, 68, 68)
+                .addGap(73, 73, 73)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTagok)
-                    .addComponent(btnBerletek))
-                .addGap(54, 54, 54)
+                    .addComponent(btnTagok, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBerletek, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(84, 84, 84)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBeleptetes)
-                    .addComponent(btnKimutatasok))
-                .addContainerGap(299, Short.MAX_VALUE))
+                    .addComponent(btnKimutatasok)
+                    .addComponent(btnBeleptetes, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(235, Short.MAX_VALUE))
         );
 
         pack();
@@ -131,9 +135,9 @@ public class Foablak extends javax.swing.JFrame {
         KimutatasokAblak ablak = new KimutatasokAblak();
         ablak.setLocationRelativeTo(this);
         ablak.setVisible(true);
-    }//GEN-LAST:event_btnKimutatasokActionPerformed
 
-    /**
+    }//GEN-LAST:event_btnKimutatasokActionPerformed
+   /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
