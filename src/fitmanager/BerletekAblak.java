@@ -190,6 +190,9 @@ public class BerletekAblak extends javax.swing.JFrame {
             tblBerletek.setModel(
                     AdatbazisKezelo.berletekLekerdezese()
             );
+
+            allapotokSzinezese();
+
         } catch (java.sql.SQLException ex) {
             javax.swing.JOptionPane.showMessageDialog(
                     this,
@@ -201,11 +204,11 @@ public class BerletekAblak extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * A NetBeans által generált felület inicializálása. Az alatta következő
-     * generált kódot nem módosítjuk.
-     */
-    @SuppressWarnings("unchecked")
+/**
+ * A NetBeans által generált felület inicializálása. Az alatta következő
+ * generált kódot nem módosítjuk.
+ */
+@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -489,7 +492,7 @@ public class BerletekAblak extends javax.swing.JFrame {
                             1
                     )
             );
-        }
+        }   
     }//GEN-LAST:event_txtBerletKeresesKeyReleased
 
     /**
@@ -507,23 +510,35 @@ public class BerletekAblak extends javax.swing.JFrame {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-                }
+                
+
+}
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(BerletekAblak.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BerletekAblak.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BerletekAblak.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
 
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+} catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(BerletekAblak.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+        
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(BerletekAblak.class
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+        
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(BerletekAblak.class
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
