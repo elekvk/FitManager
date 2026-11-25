@@ -34,6 +34,7 @@
                           <Component id="cmbTagok" min="-2" pref="300" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                          <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -41,19 +42,12 @@
                           <Component id="txtLejaratiDatum" min="-2" pref="300" max="-2" attributes="0"/>
                           <Component id="cmbBerletTipus" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" pref="102" max="-2" attributes="0"/>
+                          <Component id="txtBerletKereses" alignment="0" min="-2" pref="304" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <Component id="jLabel5" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
+                  <Component id="btnBerletMentese" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jLabel5" min="-2" pref="300" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="btnBerletMentese" min="-2" pref="136" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -85,7 +79,12 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnBerletMentese" min="-2" pref="35" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtBerletKereses" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="235" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -225,6 +224,19 @@
         <Property name="text" type="java.lang.String" value="B&#xc9;RLETEK"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel6">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="B&#xe9;rlet keres&#xe9;se:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtBerletKereses">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtBerletKeresesKeyReleased"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

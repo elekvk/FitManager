@@ -17,6 +17,43 @@ public class BerletekAblak extends javax.swing.JFrame {
         berletTipusokBetoltese();
         berletekListaFrissitese();
         Megjelenes.beallit(this);
+        allapotokSzinezese();
+    }
+
+    private void allapotokSzinezese() {
+        tblBerletek.getColumnModel().getColumn(5).setCellRenderer(
+                new javax.swing.table.DefaultTableCellRenderer() {
+            @Override
+            public java.awt.Component getTableCellRendererComponent(
+                    javax.swing.JTable tabla,
+                    Object ertek,
+                    boolean kijelolt,
+                    boolean fokusz,
+                    int sor,
+                    int oszlop) {
+
+                super.getTableCellRendererComponent(
+                        tabla, ertek, kijelolt, fokusz, sor, oszlop);
+
+                setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                setFont(getFont().deriveFont(java.awt.Font.BOLD));
+
+                if (!kijelolt) {
+                    String allapot = String.valueOf(ertek);
+
+                    if ("Aktív".equals(allapot)) {
+                        setForeground(new java.awt.Color(0, 130, 70));
+                    } else if ("Lejárt".equals(allapot)) {
+                        setForeground(new java.awt.Color(190, 45, 45));
+                    } else {
+                        setForeground(new java.awt.Color(110, 110, 110));
+                    }
+                }
+
+                return this;
+            }
+        }
+        );
     }
 
     private void berletTipusokBetoltese() {
@@ -91,6 +128,8 @@ public class BerletekAblak extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblBerletek = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtBerletKereses = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("FitManager - Bérletkezelés");
@@ -154,6 +193,15 @@ public class BerletekAblak extends javax.swing.JFrame {
         jLabel5.setText("BÉRLETEK");
         jLabel5.setToolTipText("");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Bérlet keresése:");
+
+        txtBerletKereses.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBerletKeresesKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -167,21 +215,17 @@ public class BerletekAblak extends javax.swing.JFrame {
                             .addComponent(txtKezdoDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmbTagok, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
                         .addGap(173, 173, 173)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtLejaratiDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmbBerletTipus, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBerletMentese, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtBerletKereses, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBerletMentese, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -207,7 +251,11 @@ public class BerletekAblak extends javax.swing.JFrame {
                     .addComponent(txtKezdoDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnBerletMentese, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtBerletKereses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -325,6 +373,25 @@ public class BerletekAblak extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnBerletMenteseActionPerformed
 
+    private void txtBerletKeresesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBerletKeresesKeyReleased
+        // TODO add your handling code here:
+        String keresettSzoveg = txtBerletKereses.getText().trim();
+
+        javax.swing.table.TableRowSorter<javax.swing.table.TableModel> rendezo
+                = new javax.swing.table.TableRowSorter<>(tblBerletek.getModel());
+
+        tblBerletek.setRowSorter(rendezo);
+
+        if (!keresettSzoveg.isEmpty()) {
+            rendezo.setRowFilter(
+                    javax.swing.RowFilter.regexFilter(
+                            "(?iu)" + java.util.regex.Pattern.quote(keresettSzoveg),
+                            1
+                    )
+            );
+        }
+    }//GEN-LAST:event_txtBerletKeresesKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -377,8 +444,10 @@ public class BerletekAblak extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblBerletek;
+    private javax.swing.JTextField txtBerletKereses;
     private javax.swing.JTextField txtKezdoDatum;
     private javax.swing.JTextField txtLejaratiDatum;
     // End of variables declaration//GEN-END:variables
