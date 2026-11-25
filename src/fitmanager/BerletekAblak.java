@@ -18,6 +18,99 @@ public class BerletekAblak extends javax.swing.JFrame {
         berletekListaFrissitese();
         Megjelenes.beallit(this);
         allapotokSzinezese();
+        elrendezesBeallitasa();
+    }
+
+    private void elrendezesBeallitasa() {
+
+        javax.swing.GroupLayout layout
+                = new javax.swing.GroupLayout(getContentPane());
+
+        getContentPane().setLayout(layout);
+
+        layout.setHorizontalGroup(
+                layout.createSequentialGroup()
+                        .addContainerGap(12, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(
+                                javax.swing.GroupLayout.Alignment.CENTER)
+                                .addComponent(jLabel5, 300, 300, 300)
+                                .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel1)
+                                                .addComponent(cmbTagok, 300, 300, 300)
+                                                .addComponent(jLabel3)
+                                                .addComponent(txtKezdoDatum, 300, 300, 300))
+                                        .addGap(178)
+                                        .addGroup(layout.createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel2)
+                                                .addComponent(cmbBerletTipus, 300, 300, 300)
+                                                .addComponent(jLabel4)
+                                                .addComponent(txtLejaratiDatum, 300, 300, 300)))
+                                .addComponent(btnBerletMentese, 136, 136, 136)
+                                .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel6, 150, 150, 150)
+                                        .addGap(18)
+                                        .addComponent(txtBerletKereses, 610, 610, 610))
+                                .addComponent(jScrollPane1, 778, 778, 778))
+                        .addContainerGap(12, Short.MAX_VALUE)
+        );
+
+        layout.setVerticalGroup(
+                layout.createSequentialGroup()
+                        .addGap(35)
+                        .addComponent(jLabel5, 46, 46, 46)
+                        .addGap(18)
+                        .addGroup(layout.createParallelGroup(
+                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel1, 28, 28, 28)
+                                .addComponent(jLabel2, 28, 28, 28))
+                        .addGap(14)
+                        .addGroup(layout.createParallelGroup(
+                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cmbTagok,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmbBerletTipus,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36)
+                        .addGroup(layout.createParallelGroup(
+                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel3, 24, 24, 24)
+                                .addComponent(jLabel4, 24, 24, 24))
+                        .addGap(12)
+                        .addGroup(layout.createParallelGroup(
+                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtKezdoDatum,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtLejaratiDatum,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18)
+                        .addComponent(btnBerletMentese, 35, 35, 35)
+                        .addGap(12)
+                        .addGroup(layout.createParallelGroup(
+                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel6)
+                                .addComponent(txtBerletKereses,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10)
+                        .addComponent(jScrollPane1, 150, 235, Short.MAX_VALUE)
+                        .addGap(20)
+        );
+
+        setMinimumSize(new java.awt.Dimension(830, 600));
+        setSize(900, 650);
+        setLocationRelativeTo(null);
     }
 
     private void allapotokSzinezese() {
@@ -207,17 +300,21 @@ public class BerletekAblak extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtKezdoDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbTagok, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGap(173, 173, 173)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtKezdoDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cmbTagok, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(207, 207, 207)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtLejaratiDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -226,7 +323,7 @@ public class BerletekAblak extends javax.swing.JFrame {
                             .addComponent(txtBerletKereses, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBerletMentese, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(46, 46, 46))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,11 +334,14 @@ public class BerletekAblak extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbBerletTipus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbTagok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cmbBerletTipus)
+                        .addGap(53, 53, 53))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cmbTagok, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))

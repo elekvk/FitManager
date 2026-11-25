@@ -4,34 +4,40 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Cursor;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JViewport;
+import javax.swing.plaf.basic.BasicArrowButton;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.table.JTableHeader;
 
 public class Megjelenes {
 
-    private static final Color HATTER
-            = new Color(233, 245, 243);
+    private static final Color HATTER =
+            new Color(233, 245, 243);
 
-    private static final Color TURKIZ
-            = new Color(0, 143, 145);
+    private static final Color TURKIZ =
+            new Color(0, 143, 145);
 
-    private static final Color ANTRACIT
-            = new Color(24, 52, 62);
+    private static final Color ANTRACIT =
+            new Color(24, 52, 62);
 
-    private static final Color KERET
-            = new Color(198, 218, 215);
+    private static final Color KERET =
+            new Color(198, 218, 215);
 
-    private static final Color KIJEOLES
-            = new Color(204, 237, 231);
+    private static final Color KIJELOLES =
+            new Color(204, 237, 231);
 
     public static void beallit(JFrame ablak) {
         ablak.getContentPane().setBackground(HATTER);
@@ -55,7 +61,6 @@ public class Megjelenes {
 
             } else if (elem instanceof JLabel) {
                 JLabel felirat = (JLabel) elem;
-
                 felirat.setForeground(ANTRACIT);
 
             } else if (elem instanceof JTextField) {
@@ -67,47 +72,88 @@ public class Megjelenes {
                 mezo.setBorder(
                         BorderFactory.createCompoundBorder(
                                 BorderFactory.createLineBorder(KERET),
-                                BorderFactory.createEmptyBorder(
-                                        4, 7, 4, 7)
+                                BorderFactory.createEmptyBorder(4, 7, 4, 7)
                         )
                 );
 
             } else if (elem instanceof JComboBox) {
-                JComboBox lista = (JComboBox) elem;
+                JComboBox<?> lista = (JComboBox<?>) elem;
 
-            } else if (elem instanceof JComboBox) {
-            } else if (elem instanceof JComboBox) {
-                JComboBox lista = (JComboBox) elem;
+                lista.setUI(new BasicComboBoxUI() {
+                    @Override
+                    public void paintCurrentValueBackground(
+                            Graphics g,
+                            Rectangle bounds,
+                            boolean hasFocus) {
 
-                lista.setBackground(Color.WHITE);
-                lista.setForeground(ANTRACIT);
+                        g.setColor(Color.WHITE);
+                        g.fillRect(
+                                bounds.x,
+                                bounds.y,
+                                bounds.width,
+                                bounds.height
+                        );
+                    }
 
-                lista.putClientProperty("Nimbus.Overrides.InheritDefaults",
-                        Boolean.TRUE);
+                    @Override
+                    protected JButton createArrowButton() {
+                        BasicArrowButton nyil = new BasicArrowButton(
+                                BasicArrowButton.SOUTH,
+                                TURKIZ,
+                                TURKIZ,
+                                Color.WHITE,
+                                TURKIZ
+                        );
+
+                        nyil.setBackground(TURKIZ);
+                        nyil.setBorder(BorderFactory.createEmptyBorder());
+                        nyil.setFocusPainted(false);
+                        nyil.setCursor(
+                                new Cursor(Cursor.HAND_CURSOR)
+                        );
+
+                        return nyil;
+                    }
+                });
 
                 lista.setBackground(Color.WHITE);
                 lista.setForeground(ANTRACIT);
                 lista.setOpaque(true);
-                javax.swing.SwingUtilities.updateComponentTreeUI(lista);
+                lista.setBorder(
+                        BorderFactory.createLineBorder(KERET)
+                );
 
-                lista.setRenderer(new javax.swing.DefaultListCellRenderer() {
+                lista.setRenderer(new DefaultListCellRenderer() {
                     @Override
                     public Component getListCellRendererComponent(
-                            javax.swing.JList<?> list,
+                            JList<?> list,
                             Object value,
                             int index,
                             boolean isSelected,
                             boolean cellHasFocus) {
 
-                        Component elem = super.getListCellRendererComponent(
-                                list, value, index, isSelected, cellHasFocus);
+                        super.getListCellRendererComponent(
+                                list, value, index,
+                                isSelected, cellHasFocus
+                        );
+
+                        setOpaque(true);
+                        setText(
+                                value == null ? "" : value.toString()
+                        );
 
                         if (index == -1) {
-                            elem.setBackground(Color.WHITE);
-                            elem.setForeground(ANTRACIT);
+                            setBackground(Color.WHITE);
+                            setForeground(ANTRACIT);
+                        } else if (isSelected) {
+                            setBackground(KIJELOLES);
+                            setForeground(ANTRACIT);
+                        } else {
+                            setBackground(Color.WHITE);
+                            setForeground(ANTRACIT);
                         }
 
-                        return elem;
+                        return this;
                     }
                 });
 
@@ -118,12 +164,11 @@ public class Megjelenes {
                 tabla.setForeground(ANTRACIT);
                 tabla.setRowHeight(27);
                 tabla.setGridColor(KERET);
-                tabla.setSelectionBackground(KIJEOLES);
+                tabla.setSelectionBackground(KIJELOLES);
                 tabla.setSelectionForeground(ANTRACIT);
                 tabla.setShowVerticalLines(false);
 
                 JTableHeader fejlec = tabla.getTableHeader();
-
                 fejlec.setBackground(TURKIZ);
                 fejlec.setForeground(Color.WHITE);
 
