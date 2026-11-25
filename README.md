@@ -99,3 +99,8 @@ A beadási csomag a projekthez kapcsolódó dokumentációt is tartalmazza:
 
 A FitManager a Java-programozási, grafikusfelület-készítési, adatbázis-kezelési és szoftvertervezési ismeretek gyakorlati alkalmazását mutatja be egy összetett, működőképes alkalmazásban.
 
+## GitHub
+
+A FitManager projekt forráskódja és fejlesztési előzményei a GitHubon is elérhetők.
+
+**GitHub-tároló:** https://github.com/elekvk/FitManager
